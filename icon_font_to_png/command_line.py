@@ -42,7 +42,7 @@ def run(arguments):
         'icons',
         type=str,
         nargs='*',
-        help="names of the icons to export (or 'ALL' for all icons)"
+        help="names of the icons to export"
     )
     exp_group.add_argument(
         '--size',
@@ -63,6 +63,12 @@ def run(arguments):
         type=str,
         default='black',
         help="color name or hex value (default: black)"
+    )
+    exp_group.add_argument(
+        '--out',
+        type=str,
+        default='./exported',
+        help='Output directory (default ./exported)'
     )
     exp_group.add_argument(
         '--filename',
@@ -164,7 +170,7 @@ def run(arguments):
                                               size=args.size))
 
         icon_font.export_icon(icon=icon, filename=filename, size=args.size,
-                              color=args.color, scale=args.scale)
+                              color=args.color, scale=args.scale, export_dir=args.out)
 
     print()
     print("All done")
