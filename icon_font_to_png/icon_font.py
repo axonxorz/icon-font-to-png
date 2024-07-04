@@ -103,8 +103,10 @@ class IconFont(object):
         else:
             scale_factor = float(scale)
 
-        font = ImageFont.truetype(self.ttf_file, int(size * scale_factor))
-        width, height = draw.textsize(self.css_icons[icon], font=font)
+        font_size = int(size * scale_factor)
+        font = ImageFont.truetype(self.ttf_file, font_size)
+        width = draw.textlength(self.css_icons[icon], font=font)
+        height = font_size  # always, as long as single-line of text
 
         # If auto-scaling is enabled, we need to make sure the resulting
         # graphic fits inside the boundary. The values are rounded and may be
@@ -116,7 +118,7 @@ class IconFont(object):
             factor = 1
 
             while True:
-                width, height = draw.textsize(self.css_icons[icon], font=font)
+                width = draw.textlength(self.css_icons[icon], font=font)
 
                 # Check if the image fits
                 dim = max(width, height)
@@ -161,7 +163,7 @@ class IconFont(object):
 
         # If necessary, scale the image to the target size
         if org_size != size:
-            out_image = out_image.resize((org_size, org_size), Image.ANTIALIAS)
+            out_image = out_image.resize((org_size, org_size), Image.Resampling.LANCZOS)
 
         # Make sure export directory exists
         if not os.path.exists(export_dir):
