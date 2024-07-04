@@ -59,7 +59,8 @@ required arguments:
   --css CSS-FILE        path to CSS file
 
 exporting icons:
-  icons                 names of the icons to export (or 'ALL' for all icons)
+  icons                 names of the icons to export
+  --all                 export all icons defined in the CSS file
   --size SIZE           icon size in pixels (default: 16)
   --scale SCALE         scaling factor between 0 and 1, or 'auto' for
                         automatic scaling (default: auto); be careful, as
@@ -94,19 +95,19 @@ $ icon-font-to-png --css font-awesome.css --ttf fontawesome-webfont.ttf --size 6
 Export all icons in blue:
 
 ```
-$ icon-font-to-png --css font-awesome.css --ttf fontawesome-webfont.ttf --color blue ALL
+$ icon-font-to-png --css font-awesome.css --ttf fontawesome-webfont.ttf --color blue --all
 ```
 
 Export all icons in blue, but using it's hex value:
 
 ```
-$ icon-font-to-png --css font-awesome.css --ttf fontawesome-webfont.ttf --color '#0000ff' ALL
+$ icon-font-to-png --css font-awesome.css --ttf fontawesome-webfont.ttf --color '#0000ff' --all
 ```
 
 Or you can use `font-awesome-to-png`, without css and ttf arguments:
 
 ```
-$ font-awesome-to-png ALL
+$ font-awesome-to-png --all
 ```
 
 ## API

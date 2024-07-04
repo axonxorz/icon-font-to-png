@@ -77,6 +77,12 @@ def run(arguments):
         help="do not remove common icon prefix "
              "(i.e. 'fa-arrow-right' instead of 'arrow-right')"
     )
+    exp_group.add_argument(
+        '--all',
+        default=False,
+        action='store_true',
+        help='Export all icons from set'
+    )
 
     args = parser.parse_args(arguments)
 
@@ -107,9 +113,9 @@ def run(arguments):
 
     # If not '--list' or '--download', parse passed icons
     selected_icons = list()
-    if not args.icons:
+    if not args.icons and not args.all:
         parser.error("You have to pass at least one icon name")
-    elif args.icons == ['ALL']:
+    elif args.all:
         selected_icons = icon_font.css_icons.keys()
     else:
         for icon in args.icons:
